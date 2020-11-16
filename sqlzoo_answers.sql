@@ -13,17 +13,17 @@
 
 -- 7.
 
--- 8.
+-- 8. - Skip this one
 
 -- 9.
 
 -- 10.
 
--- 11.
+-- 11. - Skip this one
 
--- 12.
+-- 12. - Skip this one
 
--- 13.
+-- 13. - Skip this one
 
 
 
