@@ -1,13 +1,13 @@
 const stringController = require('express').Router()
 
-stringController.get('/reverse', (req, res) => {
-
-    res.render('reverse')
+stringController.get('/reverse/:string', (req, res) => {
+    const userString = req.params.string
+    res.render('reverse', { string: userString })
 })
 
-stringController.get('/upcase', (req, res) => {
-
-    res.render('upcase')
+stringController.get('/upcase/:string', (req, res) => {
+    const userString = req.params.string
+    res.render('upcase', { string: userString })
 })
 
 module.exports = stringController;

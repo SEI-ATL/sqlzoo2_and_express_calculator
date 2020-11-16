@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 app.use('/math', mathController);
 app.use('/string', stringController);
 
-
 app.listen(8001, () => {
     console.log('Server has started')
 })
