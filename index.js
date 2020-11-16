@@ -1,28 +1,13 @@
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
+const router = express.Router()
 
 app.set('view engine', 'ejs')
+app.use('/math', require('./mathControllers/math'))
+app.use('/string', require('./stringControllers/string'))
 
 
-app.get('/math/double/:number', (req, res) => {
-    // let number = :number;
-    const number = req.params.number
-    res.render('double', {number})
-})
-app.get('/math/square/:number', (req, res) => {
-    // let number = :number;
-    const number = req.params.number
-    res.render('square', {number})
-})
-app.get('/string/reverse/:yourString', (req, res) => {
-    const yourString = req.params.yourString
-    res.render('reverse', {yourString})
-})
-app.get('/string/upcase/:yourString', (req, res) => {
-    const yourString = req.params.yourString
-    res.render('upcase', {yourString})
-})
 
 
 function reverseString(str){
