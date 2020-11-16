@@ -1,0 +1,24 @@
+{
+  "name": "sqlzoo2_and_express_calculator",
+  "version": "1.0.0",
+  "description": "## Part 1: SQLZoo Complete units 6, 7, 8, and 8+ at [https://sqlzoo.net/](https://sqlzoo.net/). In `sqlzoo_answers.sql`, paste in the correct queries. If you already did these over the weekend, you don't have to do it over!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJURIZ/sqlzoo2_and_express_calculator.git"
+  },
+  "author": "Jeremy Uriz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JJURIZ/sqlzoo2_and_express_calculator/issues"
+  },
+  "homepage": "https://github.com/JJURIZ/sqlzoo2_and_express_calculator#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  }
+}
