@@ -1,0 +1,9 @@
+<h1>Makes the string reversed</h1>
+<p>You inputted <%= yourString %>. This string reversed is <%= reverseString(yourString) %> </p>
+
+<% function reverseString(str){ %>
+<%      let newStr = str.split('')  %>
+<%    newStr = newStr.reverse() %>
+<%    newStr = newStr.join('') %>
+<%    return newStr %>
+<% } %>
