@@ -1,6 +1,9 @@
 # Express calculator and SQLZoo2
 
-## Part 1: Express Calculator
+## Part 1: SQLZoo
+Complete units 6, 7, 8, and 8+ at [https://sqlzoo.net/](https://sqlzoo.net/). In `sqlzoo_answers.sql`, paste in the correct queries. If you already did these over the weekend, you don't have to do it over!
+
+## Part 2: Express Calculator
 You will build an express app that performs some simple math and string calculations, based on the data the user inputs through the route parameters.
 
 ### Required behaviors:
@@ -17,4 +20,3 @@ You will build an express app that performs some simple math and string calculat
 1. A `views` directory that contains a `math` and a `strings` directory, which each contain the appropriate ejs files
 1. A layout that your views are rendered within. The layout should contain the header and the "Instructions" link, which should point to your root route.
 1. Remember to NOT commit your `node_modules` directory!
-
