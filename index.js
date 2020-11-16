@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/math', mathController);
-app.use('/string', stringController);
+app.use('/strings', stringController);
 
 app.listen(8001, () => {
     console.log('Server has started')
