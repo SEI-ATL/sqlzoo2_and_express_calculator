@@ -109,13 +109,39 @@ WHERE name = 'Rock Hudson'
 GROUP BY yr
 HAVING COUNT(title) > 2
 -- 12.
-
+SELECT DISTINCT title, name FROM casting 
+JOIN movie ON movieid = movie.id
+JOIN actor ON actorid = actor.id
+WHERE movie.id IN
+(SELECT movieid FROM actor
+JOIN casting ON actor.id = actorid
+WHERE name = 'Julie Andrews')
+AND ord = 1
 -- 13.
-
+SELECT name
+FROM actor
+JOIN casting ON actor.id = actorid
+WHERE ord = 1
+GROUP BY name
+HAVING COUNT(movieid) >= 15
 -- 14.
-
+SELECT title, COUNT(actorid)
+FROM movie 
+JOIN casting ON movie.id = movieid
+WHERE yr = 1978
+GROUP BY title
+ORDER BY COUNT(actorid) DESC, title
 -- 15.
-
+SELECT name
+FROM actor 
+JOIN casting ON actor.id = actorid
+JOIN movie ON movieid = movie.id
+WHERE movie.id IN
+(SELECT movieid
+FROM casting
+JOIN actor ON actorid = actor.id
+WHERE name = 'Art Garfunkel')
+AND name <> 'Art Garfunkel'
 
 -- 8 Using Null
 -- 1.
@@ -198,7 +224,28 @@ AND (subject = '(8) Computer Science'
 OR subject = '(H) Creative Arts and Design')
 GROUP BY subject
 -- 6.
-
+SELECT subject,
+ROUND(SUM(response * A_STRONGLY_AGREE) / SUM(response), 0)
+FROM nss
+WHERE question = 'Q22'
+AND (subject = '(8) Computer Science'
+OR subject = '(H) Creative Arts and Design')
+GROUP BY subject
 -- 7.
-
+SELECT institution,
+ROUND(SUM(response * score) / SUM(response))
+FROM nss
+WHERE question = 'Q22'
+AND institution LIKE '%Manchester%'
+GROUP BY institution
 -- 8.
+SELECT institution,
+SUM(sample),
+SUM(CASE
+WHEN subject = '(8) Computer Science' THEN sample
+ELSE 0
+END)
+FROM nss
+WHERE question = 'Q01'
+AND institution LIKE '%Manchester%'
+GROUP BY institution
