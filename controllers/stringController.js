@@ -11,4 +11,4 @@ stringController.get('/upcase/:string', (req, res) => {
 })
 
 
-modules.exports = stringController;
+module.exports = stringController;
