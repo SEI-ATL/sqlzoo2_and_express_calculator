@@ -1,9 +1,9 @@
-const express = require('express')
-const app = express()
-const ejsLayouts = require('express-ejs-layouts')
+const express = require('express');
+const app = express();
+const ejsLayouts = require('express-ejs-layouts');
 
-app.set('view engine', 'ejs')
-app.use(ejsLayouts)
+app.set('view engine', 'ejs');
+app.use(ejsLayouts);
 
 app.get('/', (req, res)=>{
     res.render('index')
@@ -13,6 +13,6 @@ app.get('/', (req, res)=>{
 
 
 //app.listen
-app.listen(6000, ()=>{
-    console.log('testing for listen')
+app.listen(8000, ()=>{
+    console.log('testing for listen');
 })
