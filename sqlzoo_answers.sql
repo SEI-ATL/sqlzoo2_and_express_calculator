@@ -53,7 +53,6 @@ GROUP BY stadium
 -- 13. - Skip this one
 
 -- 7 More JOIN operations
--- 7 More JOIN operations
 -- 1.
 SELECT id, title
 FROM movie
