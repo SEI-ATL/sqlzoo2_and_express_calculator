@@ -1,6 +1,6 @@
 # Express calculator and SQLZoo2
 
-## Part 1: SQLZoo
+## Part 1: SQLZoo [X]
 Complete units 6, 7, 8, and 8+ at [https://sqlzoo.net/](https://sqlzoo.net/). In `sqlzoo_answers.sql`, paste in the correct queries. If you already did these over the weekend, you don't have to do it over!
 
 ## Part 2: Express Calculator
