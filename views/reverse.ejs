@@ -1,8 +1,1 @@
-<p>You inputted <% yourStr %>.</p>
-
-<% function reverseString(str) { %>
-  <%  let newStr = str.split('') %>
-  <%  newStr = newStr.reverse() %>
-   <% newStr.join('') %>
-  <%  return newStr %>
-<%}%>
+<p>You inputted <%= yourStr %>. Your string reversed is <%= yourStr.split('').reverse('').join('') %>.</p>

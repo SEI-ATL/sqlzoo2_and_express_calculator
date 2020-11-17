@@ -1,6 +1,6 @@
 const stringController = require('express').Router();
 
-stringController.get('/reverse/:yourStri', (req, res) => {
+stringController.get('/reverse/:yourStr', (req, res) => {
     const yourStr = req.params.yourStr
     res.render('reverse', {yourStr})
 })
