@@ -1,13 +1,15 @@
 //import
 const express = require('express');
 const app = express();
+const ejsLayouts = require('express-ejs-layouts');
 
-//view engine
+//init impoirts
 app.set('view engine', 'ejs');
+app.use(ejsLayouts);
 
 //routes
 app.get('/', (req, res) => {
-    res.render('homepage');
+    res.render('instructions');
 })
 
 
