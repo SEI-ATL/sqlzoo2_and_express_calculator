@@ -12,8 +12,8 @@ app.get('/', (req, res) => {
     res.render('index')
 });
 
-// app.use('/math', mathController)
-// app.use('/string', stringController)
+app.use('/math', mathController)
+app.use('/string', stringController)
 
 app.listen(3000, () => {
     console.log('server is live');
