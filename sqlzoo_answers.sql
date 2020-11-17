@@ -136,14 +136,44 @@ AND actorid=actor.id
 AND ord=1
 
 -- 11.
+SELECT yr,COUNT(title) FROM
+  movie JOIN casting ON movie.id=movieid
+        JOIN actor   ON actorid=actor.id
+WHERE name='Rock Hudson'
+GROUP BY yr
+HAVING COUNT(title) > 2
 
 -- 12.
+SELECT title, name
+FROM movie JOIN casting ON (movieid = movie.id && ord = 1)
+           JOIN actor ON (actorid = actor.id)
+WHERE movie.id IN 
+(SELECT movieid FROM casting
+ WHERE actorid IN 
+  (SELECT id FROM actor
+    WHERE name = 'Julie Andrews'))
 
 -- 13.
+SELECT name
+FROM actor JOIN casting ON (actorid = actor.id)
+WHERE casting.ord = 1
+GROUP BY actor.name
+HAVING COUNT(*) >= 15;
 
 -- 14.
+SELECT title, COUNT(actorid) 
+FROM movie JOIN casting ON (movie.id = movieid) 
+WHERE yr = 1978
+GROUP BY title 
+ORDER BY COUNT(actorid) DESC, title
 
 -- 15.
+SELECT name 
+FROM actor JOIN casting ON (actor.id = actorid)
+WHERE movieid IN (SELECT id FROM movie WHERE title IN
+(SELECT title FROM movie JOIN casting ON (movie.id = movieid) 
+WHERE actorid IN (SELECT id FROM actor 
+WHERE name = 'Art Garfunkel'))) AND name != 'Art Garfunkel'
 
 -------------- 8 USING NULL
 
@@ -155,8 +185,8 @@ WHERE dept IS NULL
 
 -- 2.
 SELECT teacher.name, dept.name
- FROM teacher INNER JOIN dept
-           ON (teacher.dept=dept.id)
+FROM teacher INNER JOIN dept
+ON (teacher.dept=dept.id)
 
 
 -- 3.
@@ -181,52 +211,86 @@ SELECT teacher.name, COALESCE(dept.name,'None')
 FROM teacher LEFT JOIN dept
 ON teacher.dept=dept.id
 
-
 -- 7.
+SELECT COUNT(name), COUNT(mobile)
+FROM teacher
 
 -- 8.
+SELECT dept.name, COUNT(teacher.name)
+FROM teacher RIGHT JOIN dept ON (teacher.dept=dept.id)
+GROUP BY dept.name
 
 -- 9.
+SELECT teacher.name,
+CASE WHEN dept.id = 1 THEN 'Sci'
+WHEN dept.id = 2 THEN 'Sci'
+ELSE 'Art' END
+FROM teacher LEFT JOIN dept ON (teacher.dept = dept.id)
 
 -- 10.
+SELECT teacher.name,
+CASE WHEN dept.id = 1 THEN 'Sci'
+     WHEN dept.id = 2 THEN 'Sci'
+     WHEN dept.id = 3 THEN 'Art'
+     ELSE 'None' END
+FROM teacher LEFT JOIN dept ON (teacher.dept = dept.id)
+
 
 -------------- 8+ NUMERIC EXAMPLES
 
 -- 1.
 SELECT A_STRONGLY_AGREE
-  FROM nss
- WHERE question='Q01'
-   AND institution='Edinburgh Napier University'
-   AND subject='(8) Computer Science'
-
+FROM nss
+WHERE question='Q01'
+AND institution='Edinburgh Napier University'
+AND subject='(8) Computer Science'
 
 -- 2.
 SELECT institution, subject
-  FROM nss
- WHERE question='Q15'
-   AND score>=100
-
+FROM nss
+WHERE question='Q15'
+AND score>=100
 
 -- 3.
 SELECT institution, score
-  FROM nss
- WHERE question='Q15'
-   AND score<50
-   AND subject = '(8) Computer Science'
-
+FROM nss
+WHERE question='Q15'
+AND score<50
+AND subject = '(8) Computer Science'
 
 -- 4.
 SELECT subject,SUM(response)
-  FROM nss
- WHERE question='Q22'
-   AND subject IN ('(8) Computer Science','(H) Creative Arts and Design')
+FROM nss
+WHERE question='Q22'
+AND subject IN ('(8) Computer Science','(H) Creative Arts and Design')
 GROUP BY subject
 
-
 -- 5.
+SELECT subject, SUM((response*A_STRONGLY_AGREE)/100)
+FROM nss
+WHERE question = 'Q22'
+GROUP BY subject HAVING subject 
+IN('(8) Computer Science', '(H) Creative Arts and Design');
 
 -- 6.
+SELECT subject, ROUND(SUM(A_STRONGLY_AGREE * response) / SUM(response))
+FROM nss
+WHERE question='Q22'
+GROUP BY subject
+HAVING subject IN('(8) Computer Science',
+'(H) Creative Arts and Design');
 
 -- 7.
+SELECT institution,ROUND(SUM(score * response)/SUM(response))
+FROM nss
+WHERE question='Q22'
+AND (institution LIKE '%Manchester%')
+GROUP BY institution
 
 -- 8.
+SELECT institution, SUM(sample) AS sample_n, 
+SUM(CASE WHEN subject = '(8) Computer Science' THEN sample
+ELSE 0 END) AS computing_n
+FROM nss
+WHERE question='Q01' AND (institution LIKE '%Manchester%')
+GROUP BY institution;
