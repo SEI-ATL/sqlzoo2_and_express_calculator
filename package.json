@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/zfinnan/sqlzoo2_and_express_calculator/issues"
   },
-  "homepage": "https://github.com/zfinnan/sqlzoo2_and_express_calculator#readme"
+  "homepage": "https://github.com/zfinnan/sqlzoo2_and_express_calculator#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  }
 }
