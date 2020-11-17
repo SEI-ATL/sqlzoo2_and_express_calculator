@@ -1,3 +1,5 @@
-<h2>this reverses</h2>
 
-<p>This was your input: <%= string %> </p>
+<% function revString(str) { %> 
+<% return str.split('').reverse().join('');} %> 
+
+<p>You inputted <%= string %>. This string reversed is <%= revString(string) %>.</p>
