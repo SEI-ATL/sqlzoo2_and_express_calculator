@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+    background-color: rgb(128, 221, 221);
+    margin: 0;
+}
+
+nav {
+    background-color: whitesmoke;
+    height: 2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instructions {
+    margin: 10px auto;
+    padding: 10px;
+    height: 150px;
+    width: 500px;
+    border-radius: 12px;
+    background-color: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 10px 0 10px;
+    color: purple;
+}
+
+p.result {
+    margin: 15px auto;
+    padding: 10px;
+    height: 2rem;
+    width: 500px;
+    border-radius: 12px;
+    background-color: whitesmoke;
+}

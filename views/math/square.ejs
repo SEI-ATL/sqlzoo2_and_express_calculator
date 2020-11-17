@@ -1,0 +1,9 @@
+<p class="result">You inputted
+    <%= num %>.
+        <% let regexStr = /[a-zA-Z]/g %>
+            <% if( regexStr.test(num)){ %>
+                <span>This is not a number.</span>
+                <%}else { %><span>This number squared is
+        <%= num*num %>.</span>
+                    <% }%>
+</p>
