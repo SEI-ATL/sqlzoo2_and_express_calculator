@@ -1,1 +1,7 @@
-<p>You inputted <%= string %>. This string reversed is TK.</p>
+<p>You inputted <em><%= string %></em>. This string reversed is:</p>
+<% let array = string.split('') %>
+<% let reversed = [] %>
+<% for (let i = array.length - 1; i >= 0; i--) { %>
+    <% reversed.push(array[i]) %>
+<% } %>
+<p><b><%= reversed.join('') %></b></p>
