@@ -168,49 +168,144 @@ WHERE actorid=actor.id AND name='Julie Andrews');
 
 
 -- 13.
+list, in alphabetical order, of actors who have had at least 15 starring roles
+
+SELECT name FROM casting
+JOIN actor ON actorid = actor.id
+WHERE ord =1
+GROUP BY name
+HAVING COUNT(movieid)>=15;
 
 -- 14.
+List the films released in the year 1978 ordered by the number of actors in the cast, then by title
+
+SELECT title, COUNT(actorid)
+FROM casting, movie
+WHERE yr = 1978 AND movieid=movie.id
+GROUP BY title ORDER BY 2 DESC, 1 ASC;
 
 -- 15.
+?????
 
 
 -- 8 Using Null
 -- 1.
+teachers who have NULL for their department
+
+SELECT name FROM teacher
+WHERE dept IS NULL;
 
 -- 2.
+SELECT teacher.name, dept.name
+ FROM teacher INNER JOIN dept
+           ON (teacher.dept=dept.id)
 
 -- 3.
+JOIN so that all teachers are listed
+
+SELECT teacher.name, dept.name
+FROM teacher 
+LEFT JOIN dept ON (teacher.dept=dept.id);
 
 -- 4.
+JOIN so that all departments are listed
+
+SELECT teacher.name, dept.name
+FROM teacher
+RIGHT JOIN dept ON (teacher.dept=dept.id);
 
 -- 5.
+Show teacher name and mobile number or '07986 444 2266'
+
+SELECT name, COALESCE(mobile, '07986 444 2266')
+FROM teacher;
 
 -- 6.
+print the teacher name and department name
+
+SELECT teacher.name, COALESCE(dept.name, 'None') FROM teacher
+LEFT JOIN dept ON teacher.dept=dept.id;
 
 -- 7.
+show the number of teachers and the number of mobile phones
+
+SELECT COUNT(teacher.name), COUNT(mobile)
+FROM teacher;
 
 -- 8.
+show each department and the number of staff.
+
+SELECT dept.name, COUNT(teacher.name)
+FROM teacher RIGHT JOIN dept
+ON teacher.dept=dept.id
+GROUP BY dept.name;
 
 -- 9.
+show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2 and 'Art' otherwise
+
+SELECT name, CASE WHEN dept IN (1,2)
+THEN 'Sci' ELSE 'Art' END
+FROM teacher;
 
 -- 10.
+show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2, show 'Art' if the teachers dept is 3 and 'None' otherwise
 
+SELECT name, CASE WHEN dept IN (1,2)
+THEN 'Sci' 
+WHEN dept = 3 THEN 'Art'
+ELSE 'None' END
+FROM teacher;
 
 
 -- 8+ Numeric Examples
 -- 1.
+Show the the percentage who STRONGLY AGREE
+SELECT A_STRONGLY_AGREE
+FROM nss
+WHERE question='Q01'
+AND institution='Edinburgh Napier University'
+AND subject='(8) Computer Science';
 
 -- 2.
+Show the institution and subject where the score is at least 100 for question 15
+
+SELECT institution, subject
+FROM nss WHERE question='Q15'
+AND score>=100;
+
 
 -- 3.
+Show the institution and score where the score for '(8) Computer Science' is less than 50 for question 'Q15'
+
+SELECT institution, score
+  FROM nss
+ WHERE question='Q15'
+   AND score < 50
+AND subject = '(8) Computer Science';
 
 -- 4.
+Show the subject and total number of students who responded to question 22 for each of the subjects '(8) Computer Science' and '(H) Creative Arts and Design'
+
+SELECT subject,SUM(response)
+  FROM nss
+ WHERE question='Q22'
+   AND subject IN ('(8) Computer Science','(H) Creative Arts and Design')
+GROUP BY subject;
 
 -- 5.
+Show the subject and total number of students who A_STRONGLY_AGREE to question 22 for each of the subjects '(8) Computer Science' and '(H) Creative Arts and Design'
+
+SELECT subject,SUM(response*A_STRONGLY_AGREE/100) FROM nss
+WHERE question='Q22'
+AND subject IN ('(8) Computer Science','(H) Creative Arts and Design')
+GROUP BY subject;
 
 -- 6.
+????
 
 -- 7.
+????
 
 -- 8.
+????
 
