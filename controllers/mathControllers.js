@@ -1,16 +1,16 @@
-const express = require('express');
-const router = express.Router();
+
+const mathController = require('express').Router()
 
 
-router.get('/double/:number', (req, res) => {
+mathController.get('/double/:number', (req, res) => {
     const number = req.params.number
     res.render('double', {number})
 })
 
-router.get('/square/:number', (req, res) => {
+mathController.get('/square/:number', (req, res) => {
     const number = req.params.number
     res.render('square', {number})
 })
 
 
-module.exports = router;
+module.exports = mathController;
