@@ -11,4 +11,5 @@ mathController.get('/square/:math', (req, res) => {
     
     res.render('./math/square', { math: num })
 });
+
 module.exports = mathController;
