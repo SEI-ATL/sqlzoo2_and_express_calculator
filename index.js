@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 // Use modules
 app.use(ejsLayouts)
 app.use('/math', mathController)
-app.use('/strings', stringController)
+app.use('/string', stringController)
 
 // Create routes
 app.get('/', (req, res) => {
